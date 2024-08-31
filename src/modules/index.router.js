@@ -12,9 +12,17 @@ import reviewsRouter from './reviews/reviews.router.js'
 import subcategoryRouter from './subcategory/subcategory.router.js'
 import userRouter from './user/user.router.js'
 import connectDB from '../../DB/connection.js'
-
+import cors from 'cors'
 export const appRouter = (app)=>{
 
+app.use(cors(
+  {
+    origin: "*",
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    preflightContinue: false,
+    optionsSuccessStatus: 200,
+  }
+))
 
     const baseUrl = process.env.BASEURL
     //convert Buffer Data
