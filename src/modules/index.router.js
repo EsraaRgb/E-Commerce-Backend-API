@@ -21,7 +21,7 @@ app.use(cors(
   }
 ))
 
-    const baseUrl = process.env.BASEURL
+    const baseUrl = ''
     //convert Buffer Data
     app.use(express.json())
     //setup morgan mood
