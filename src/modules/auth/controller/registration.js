@@ -7,14 +7,14 @@ import { findOne, updateOne } from "../../../../DB/DBMethods.js"
 
 export const signup = asyncHandler(async (req, res, next) => {
   const { userName, email, password } = req.body
-
+  
   // const user = await userModel.findOne({ email }).select("email");
   const user = await findOne({
     model: userModel,
     filter: { email },
     select: "email",
   })
-
+  
   if (user) {
     // user Exist
     //   res.json({ message: "email Exist" });
@@ -24,6 +24,7 @@ export const signup = asyncHandler(async (req, res, next) => {
       password,
       parseInt(process.env.SALTROUND)
     )
+    
     const newUser = new userModel({ userName, email, password: hashedPassword })
     const token = jwt.sign({ id: newUser._id }, process.env.emailToken, {
       expiresIn: "1h",

@@ -3,13 +3,12 @@ export async function sendEmail(dest, subject, message , attachments=[]) {
     
     // create reusable transporter object using the default SMTP transport
     let transporter = nodemailer.createTransport({
-        service: 'gmail',
+        service: 'outlook',
         auth: {
             user: process.env.nodeMailerEmail, // generated ethereal user
             pass: process.env.nodeMailerPassword, // generated ethereal password
         },
     });
-
     // send mail with defined transport object
     let info = await transporter.sendMail({
         from: `"Route" < ${process.env.nodeMailerEmail}>`, // sender address
